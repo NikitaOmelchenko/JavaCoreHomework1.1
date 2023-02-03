@@ -1,0 +1,29 @@
+import java.util.function.*;
+
+public class Calculator {
+
+    static Supplier<Calculator> instance = Calculator::new;
+
+    BinaryOperator<Integer> plus = (x, y) -> x + y;
+    BinaryOperator<Integer> minus = (x, y) -> x - y;
+    BinaryOperator<Integer> multiply = (x, y) -> x * y;
+    //BinaryOperator<Integer> devide = (x, y) -> x / y;
+    BinaryOperator<Integer> devide = (x, y) -> {
+        int c;
+		try {
+            c = x / y;
+        }
+        catch (Exception e) {
+            System.out.print("\nНа ноль делить нельзя, знаменатель b = ");
+            c = 0;
+        }
+        return c;
+    };
+
+    UnaryOperator<Integer> pow = x -> x * x;
+    UnaryOperator<Integer> abs = x -> x > 0 ? x : x * -1;
+
+    Predicate<Integer> isPositive = x -> x > 0;
+
+    Consumer<Integer> println = System.out::println;
+}
